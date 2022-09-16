@@ -2,8 +2,17 @@ from art import logo
 from os import system
 from tic_tac_toe import TicTacToe
 
+__assignment__ = "Week 1: Tic-Tac-Toe"
+__course__ = "CSE 210: Programming with Classes"
+__author__ = "Reuel Magistrado"
+__version__ = "1.0.0"
+__maintainer__ = "Reuel Magistrado"
+__email__ = "mag21010@byui.edu"
+
 
 def main():
+    '''Main Program of Tic-Tac-Toe game.'''
+    # Clear terminal screen and show logo.
     system('cls')
     print(logo)
 
@@ -31,23 +40,21 @@ def main():
 
             tic_tac_toe.show_board()
 
-            # taking user input
             is_cell_not_marked = True
-
             while is_cell_not_marked:
 
                 is_row_valid = False
                 while not is_row_valid:
                     row = int(
                         input(f"Enter row number [1 - {len(tic_tac_toe.board)}]: "))
-                    if row in range(1, len(tic_tac_toe.board)):
+                    if row in range(1, len(tic_tac_toe.board) + 1):
                         is_row_valid = True
 
                 is_col_valid = False
                 while not is_col_valid:
                     col = int(
                         input(f"Enter column number [1 - {len(tic_tac_toe.board)}]: "))
-                    if col in range(1, len(tic_tac_toe.board)):
+                    if col in range(1, len(tic_tac_toe.board) + 1):
                         is_col_valid = True
                 print()
 
@@ -56,26 +63,22 @@ def main():
                 else:
                     tic_tac_toe.mark_spot(row - 1, col - 1, player)
                     is_cell_not_marked = False
-            # fixing the spot
 
             system('cls')
-
-            # checking whether current player is won or not
             if tic_tac_toe.is_player_win(player):
                 print(f"Player {player} WINS! 🎉✨")
                 is_game_end = True
 
-            # checking whether the game is draw or not
             if tic_tac_toe.is_board_filled():
                 print("Match Draw! 🤝")
                 is_game_end = True
 
-            # swapping the turn
             player = tic_tac_toe.swap_player_turn(player)
-        # showing the final view of board
+
         print()
         tic_tac_toe.show_board()
 
 
+# Code to execute if called from command-line.
 if __name__ == "__main__":
     main()
